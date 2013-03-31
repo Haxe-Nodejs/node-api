@@ -60,7 +60,7 @@ typedef NodeConsole = {
 typedef NodePath = {
   function join(?p1:String,?p2:String,?p3:String):String;
   function normalize(p:String):String;
-  function resolve(from:Array<String>,to:String):Void;
+  function resolve(from:Array<String>,to:String):String;
   function dirname(p:String):String;
   function basename(p:String,?ext:String):String;
   function extname(p:String):String;
