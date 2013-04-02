@@ -60,7 +60,7 @@ typedef NodeConsole = {
 typedef NodePath = {
   function join(?p1:String,?p2:String,?p3:String):String;
   function normalize(p:String):String;
-  function resolve(from:Array<String>,to:String):Void;
+  function resolve(from:Array<String>,to:String):String;
   function dirname(p:String):String;
   function basename(p:String,?ext:String):String;
   function extname(p:String):String;
@@ -410,7 +410,7 @@ typedef NodeChildProcess = { > NodeEventEmitter,
     var stdout:NodeReadStream;
     var stderr:NodeReadStream;
     var pid:Int;
-    function kill(signal:String):Void;
+    function kill(?signal:String):Void;
 }
 
 /*
@@ -895,86 +895,45 @@ class NodeC {
 }
 
 class Node {  
-  public static var require(default,null) : String->Dynamic;
-  public static var querystring(default,null) : NodeQueryString;
-  public static var util(default,null) : NodeUtil;
-  public static var fs(default,null) : NodeFS;
-  public static var dgram(default,null) :NodeUDP ;
-  public static var net(default,null) : NodeNet;
-  public static var os(default,null) : NodeOs;
-  public static var http(default,null) : NodeHttp;
-  public static var https(default,null) : NodeHttps;
-  public static var path(default,null) : NodePath;
-  public static var url(default,null) : NodeUrl;
-  public static var dns(default,null) : NodeDns;
-  public static var vm(default,null) : NodeVM;
-  public static var process(default,null) : NodeProcess;
-  public static var tty(default,null) : NodeTTY;
-  public static var assert(default,null) : NodeAssert;
-  public static var crypto(default,null) : NodeCrypto;
-  public static var tls(default,null) : NodeTLS;
-  public static var repl(default,null) : NodeREPL;
-  public static var childProcess(default,null) : NodeChildProcessCommands;
-  public static var console(default,null) : NodeConsole;
-  public static var cluster(default,null) : NodeCluster;
+  public static var require(default,null) : String->Dynamic = untyped __js__('require');
+  public static var querystring(default,null) : NodeQueryString = require('querystring');
+  public static var util(default,null) : NodeUtil = require("util");
+  public static var fs(default,null) : NodeFS = require("fs");
+  public static var dgram(default,null) :NodeUDP = require('dgram');
+  public static var net(default,null) : NodeNet = require("net");
+  public static var os(default,null) : NodeOs = require('os');
+  public static var http(default,null) : NodeHttp = require("http");
+  public static var https(default,null) : NodeHttps = require("https");
+  public static var path(default,null) : NodePath = require('path');
+  public static var url(default,null) : NodeUrl = require('url');
+  public static var dns(default,null) : NodeDns = require("dns");
+  public static var vm(default,null) : NodeVM = require('vm');
+  public static var process(default,null) : NodeProcess = untyped __js__('process');
+  public static var tty(default,null) : NodeTTY = require('tty');
+  public static var assert(default,null) : NodeAssert = require('assert');
+  public static var crypto(default,null) : NodeCrypto = require("crypto");
+  public static var tls(default,null) : NodeTLS = require('tls');
+  public static var repl(default,null) : NodeREPL = require('repl');
+  public static var childProcess(default,null) : NodeChildProcessCommands = require('child_process');
+  public static var console(default,null) : NodeConsole = untyped __js__('console');
+  public static var cluster(default,null) : NodeCluster = require("cluster");
   
   //  public static var paths:Array<String>;
-  public static var setTimeout:Dynamic->Int->?Array<Dynamic>->Int;
-  public static var clearTimeout:Int->Void;
-  public static var setInterval:Dynamic->Int->?Array<Dynamic>->Int;
-  public static var clearInterval:Int->Void;  
-  public static var global:Dynamic;
+  public static var setTimeout:Dynamic->Int->?Array<Dynamic>->Int = untyped __js__('setTimeout');
+  public static var clearTimeout:Int->Void = untyped __js__('clearTimeout');
+  public static var setInterval:Dynamic->Int->?Array<Dynamic>->Int = untyped __js__('setInterval');
+  public static var clearInterval:Int->Void = untyped __js__('clearInterval');
+  public static var global:Dynamic = untyped __js__('global');
   
-  public static var __filename:String;
-  public static var __dirname:String;
-  public static var module:Dynamic;
-  public static var stringify:Dynamic->String;
-  public static var parse:String->Dynamic;
-  public static var queryString:NodeQueryString;
+  public static var __filename:String = untyped __js__('__filename');
+  public static var __dirname:String = untyped __js__('__dirname');
+  public static var module:Dynamic = untyped __js__('module');  // ref to the current module
+  public static var stringify:Dynamic->String = untyped __js__('JSON.stringify');
+  public static var parse:String->Dynamic = untyped __js__('JSON.parse');
   
   public static function newSocket(?options):NodeNetSocket {
     return untyped __js__("new js.Node.net.Socket(options)");
   }
-  
-  public static function
-  __init__() {
-    __filename = untyped __js__('__filename');
-    __dirname = untyped __js__('__dirname');
-
-    setTimeout = untyped __js__('setTimeout');
-    clearTimeout = untyped __js__('clearTimeout');
-    setInterval = untyped __js__('setInterval');
-    clearInterval = untyped __js__('clearInterval');
-    global = untyped __js__('global');
-    process = untyped __js__('process');
-    require = untyped __js__('require');
-    console = untyped __js__('console');
-    module = untyped __js__('module');  // ref to the current module
-    stringify = untyped __js__('JSON.stringify');
-    parse = untyped __js__('JSON.parse');
-   
-    // just load everything, maybe not to everyone's taste
-    util = require("util");
-    fs = require("fs");
-    net = require("net");
-    http = require("http");
-    https = require("https");
-    path = require('path');
-    url = require('url');
-    os = require('os');
-    crypto = require("crypto");
-    dns = require("dns");
-    queryString = require('querystring');
-    assert = require('assert');
-    childProcess = require('child_process');
-    vm = require('vm');
-    tls = require('tls');
-    dgram = require('dgram');
-    assert = require('assert');
-    repl = require('repl');
-    cluster = require("cluster");
-  }
-  
 }
 
 
