@@ -1,5 +1,5 @@
 /* Same license as Node.js
-   Maintainer: Ritchie Turner, blackdog@cloudshift.cl
+   Maintainer: Ritchie Turner, blackdog@async.cl
 
    Node.js 0.8 api without haXe embellishments so that other apis may be implemented
    on top without being hindered by design choices here.
