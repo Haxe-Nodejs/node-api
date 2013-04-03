@@ -78,6 +78,7 @@ typedef NodeUrlObj = {
   var hostname:String;
   var port:String;
   var pathname:String;
+  var path:String;
   var search:String;
   var query:Dynamic;
   var hash:String;
